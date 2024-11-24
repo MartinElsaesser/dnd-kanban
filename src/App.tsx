@@ -1,5 +1,5 @@
-import { MultipleContainers } from './2 - Presets/Sortable/MultipleContainers';
+import { Kanban } from './components';
 
 export default function App() {
-	return <MultipleContainers/>
+	return <Kanban/>
 }
