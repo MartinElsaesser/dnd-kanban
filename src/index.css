@@ -1,0 +1,8 @@
+.drag-item {
+	width: 200px;
+	height: 100px;
+}
+
+button {
+	cursor: grab;
+}
