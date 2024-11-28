@@ -129,7 +129,6 @@ interface Props {
   strategy?: SortingStrategy;
   minimal?: boolean;
   trashable?: boolean;
-  vertical?: boolean;
 }
 
 export const TRASH_ID = 'void';
@@ -145,7 +144,6 @@ export function MultipleContainers({
   renderItem,
   strategy = verticalListSortingStrategy,
   trashable = false,
-  vertical = false,
 }: Props) {
   const [items, setItems] = useState<Items>(initialItems);
   const [containers, setContainers] = useState(
@@ -421,16 +419,12 @@ export function MultipleContainers({
           display: 'inline-grid',
           boxSizing: 'border-box',
           padding: 20,
-          gridAutoFlow: vertical ? 'row' : 'column',
+          gridAutoFlow: 'column',
         }}
       >
         <SortableContext
           items={[...containers, PLACEHOLDER_ID]}
-          strategy={
-            vertical
-              ? verticalListSortingStrategy
-              : horizontalListSortingStrategy
-          }
+          strategy={ horizontalListSortingStrategy }
         >
           {containers.map((containerId) => (
             <DroppableContainer
