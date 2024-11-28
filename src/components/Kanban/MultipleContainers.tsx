@@ -22,17 +22,17 @@ import {
 } from '@dnd-kit/core';
 import {
   SortableContext,
-  useSortable,
   arrayMove,
   verticalListSortingStrategy,
   horizontalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import {coordinateGetter as multipleContainersCoordinateGetter} from './multipleContainersKeyboardCoordinates';
 
-import {Item, Container, ContainerProps} from '../../components';
+import {Item, Container} from '../../components';
 
-import { useMountStatus } from '../../hooks/useMountStatus';
 import { DroppableContainer } from './DroppableContainer';
+import { getColor } from '../../utilities/getColor';
+import { SortableItem } from './SortableItem';
 
 
 const dropAnimation: DropAnimation = {
@@ -60,7 +60,7 @@ interface Props {
   }): React.CSSProperties;
   wrapperStyle?(args: {index: number}): React.CSSProperties;
   items: Items;
-  renderItem?: any;
+  renderItem?: () => React.ReactElement;
   minimal?: boolean;
   trashable?: boolean;
 }
@@ -495,21 +495,6 @@ export function MultipleContainers({
   }
 }
 
-function getColor(id: UniqueIdentifier) {
-  switch (String(id)[0]) {
-    case 'A':
-      return '#7193f1';
-    case 'B':
-      return '#ffda6c';
-    case 'C':
-      return '#00bcd4';
-    case 'D':
-      return '#ef769f';
-  }
-
-  return undefined;
-}
-
 function Trash({id}: {id: UniqueIdentifier}) {
   const {setNodeRef, isOver} = useDroppable({
     id,
@@ -537,68 +522,3 @@ function Trash({id}: {id: UniqueIdentifier}) {
     </div>
   );
 }
-
-interface SortableItemProps {
-  containerId: UniqueIdentifier;
-  id: UniqueIdentifier;
-  index: number;
-  disabled?: boolean;
-  style(args: any): React.CSSProperties;
-  getIndex(id: UniqueIdentifier): number;
-  renderItem(): React.ReactElement;
-  wrapperStyle({index}: {index: number}): React.CSSProperties;
-}
-
-function SortableItem({
-  disabled,
-  id,
-  index,
-  renderItem,
-  style,
-  containerId,
-  getIndex,
-  wrapperStyle,
-}: SortableItemProps) {
-  const {
-    setNodeRef,
-    setActivatorNodeRef,
-    listeners,
-    isDragging,
-    isSorting,
-    over,
-    overIndex,
-    transform,
-    transition,
-  } = useSortable({
-    id,
-  });
-  const mounted = useMountStatus();
-  const mountedWhileDragging = isDragging && !mounted;
-
-  return (
-    <Item
-      ref={disabled ? undefined : setNodeRef}
-      value={id}
-      dragging={isDragging}
-      sorting={isSorting}
-      index={index}
-      wrapperStyle={wrapperStyle({index})}
-      style={style({
-        index,
-        value: id,
-        isDragging,
-        isSorting,
-        overIndex: over ? getIndex(over.id) : overIndex,
-        containerId,
-      })}
-      color={getColor(id)}
-      transition={transition}
-      transform={transform}
-      fadeIn={mountedWhileDragging}
-      listeners={listeners}
-      renderItem={renderItem}
-    />
-  );
-}
-
-
