@@ -47,7 +47,6 @@ export const Item = React.memo(
         dragging,
         disabled,
         fadeIn,
-        height,
         index,
         listeners,
         onRemove,
