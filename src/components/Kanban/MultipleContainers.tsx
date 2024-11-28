@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {createPortal, unstable_batchedUpdates} from 'react-dom';
 import {
-  CancelDrop,
   closestCenter,
   pointerWithin,
   rectIntersection,
@@ -118,7 +117,6 @@ const dropAnimation: DropAnimation = {
 type Items = Record<UniqueIdentifier, UniqueIdentifier[]>;
 
 interface Props {
-  cancelDrop?: CancelDrop;
   columns?: number;
   containerStyle?: React.CSSProperties;
   coordinateGetter?: KeyboardCoordinateGetter;
@@ -150,7 +148,6 @@ const empty: UniqueIdentifier[] = [];
 
 export function MultipleContainers({
   itemCount = 3,
-  cancelDrop,
   columns,
   handle = false,
   items: initialItems,
@@ -441,7 +438,6 @@ export function MultipleContainers({
 
         setActiveId(null);
       }}
-      cancelDrop={cancelDrop}
       onDragCancel={onDragCancel}
       modifiers={modifiers}
     >
