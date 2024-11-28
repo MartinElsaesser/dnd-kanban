@@ -12,7 +12,6 @@ import {
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
-  Modifiers,
   useDroppable,
   UniqueIdentifier,
   useSensors,
@@ -133,7 +132,6 @@ interface Props {
   items?: Items;
   renderItem?: any;
   strategy?: SortingStrategy;
-  modifiers?: Modifiers;
   minimal?: boolean;
   trashable?: boolean;
   scrollable?: boolean;
@@ -152,7 +150,6 @@ export function MultipleContainers({
   getItemStyles = () => ({}),
   wrapperStyle = () => ({}),
   minimal = false,
-  modifiers,
   renderItem,
   strategy = verticalListSortingStrategy,
   trashable = false,
@@ -435,7 +432,6 @@ export function MultipleContainers({
         setActiveId(null);
       }}
       onDragCancel={onDragCancel}
-      modifiers={modifiers}
     >
       <div
         style={{
