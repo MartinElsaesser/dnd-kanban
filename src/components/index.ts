@@ -2,7 +2,6 @@ export {Container} from './Container';
 export {Kanban} from './Kanban';
 export type {ContainerProps} from './Container';
 
-import {Handle} from './Handle';
-import {Remove} from './Remove';
-import {Action} from './Action';
+export {Handle, Remove, Button} from './Button';
+export type {ButtonProps } from './Button';
 export {Item} from './Item';

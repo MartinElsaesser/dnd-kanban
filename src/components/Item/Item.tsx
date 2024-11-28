@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import type {DraggableSyntheticListeners} from '@dnd-kit/core';
 import type {Transform} from '@dnd-kit/utilities';
 
-import {Remove} from '../Remove';
+import {Remove} from '../Button';
 
 import styles from './Item.module.css';
 

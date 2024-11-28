@@ -1,8 +1,7 @@
 import React, {forwardRef} from 'react';
 import classNames from 'classnames';
 
-import {Handle} from '../Handle';
-import {Remove} from '../Remove';
+import {Handle, Remove} from '../Button';
 
 import styles from './Container.module.css';
 
