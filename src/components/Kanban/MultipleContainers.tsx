@@ -131,7 +131,6 @@ interface Props {
   wrapperStyle?(args: {index: number}): React.CSSProperties;
   itemCount?: number;
   items?: Items;
-  handle?: boolean;
   renderItem?: any;
   strategy?: SortingStrategy;
   modifiers?: Modifiers;
@@ -148,7 +147,6 @@ const empty: UniqueIdentifier[] = [];
 export function MultipleContainers({
   itemCount = 3,
   columns,
-  handle = false,
   items: initialItems,
   coordinateGetter = multipleContainersCoordinateGetter,
   getItemStyles = () => ({}),
@@ -474,7 +472,6 @@ export function MultipleContainers({
                       key={value}
                       id={value}
                       index={index}
-                      handle={handle}
                       style={getItemStyles}
                       wrapperStyle={wrapperStyle}
                       renderItem={renderItem}
@@ -519,7 +516,6 @@ export function MultipleContainers({
     return (
       <Item
         value={id}
-        handle={handle}
         style={getItemStyles({
           containerId: findContainer(id) as UniqueIdentifier,
           overIndex: -1,
@@ -552,7 +548,6 @@ export function MultipleContainers({
           <Item
             key={item}
             value={item}
-            handle={handle}
             style={getItemStyles({
               containerId,
               overIndex: -1,
@@ -644,7 +639,6 @@ interface SortableItemProps {
   containerId: UniqueIdentifier;
   id: UniqueIdentifier;
   index: number;
-  handle: boolean;
   disabled?: boolean;
   style(args: any): React.CSSProperties;
   getIndex(id: UniqueIdentifier): number;
@@ -656,7 +650,6 @@ function SortableItem({
   disabled,
   id,
   index,
-  handle,
   renderItem,
   style,
   containerId,
@@ -685,8 +678,6 @@ function SortableItem({
       value={id}
       dragging={isDragging}
       sorting={isSorting}
-      handle={handle}
-      handleProps={handle ? {ref: setActivatorNodeRef} : undefined}
       index={index}
       wrapperStyle={wrapperStyle({index})}
       style={style({
