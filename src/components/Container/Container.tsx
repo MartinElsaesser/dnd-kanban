@@ -35,7 +35,7 @@ export const Container = forwardRef<HTMLDivElement & HTMLButtonElement, Props>(
       label,
       placeholder,
       style,
-      scrollable,
+      scrollable = true,
       shadow,
       unstyled,
       ...props

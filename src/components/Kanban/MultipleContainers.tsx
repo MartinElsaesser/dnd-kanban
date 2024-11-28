@@ -131,7 +131,6 @@ interface Props {
   strategy?: SortingStrategy;
   minimal?: boolean;
   trashable?: boolean;
-  scrollable?: boolean;
   vertical?: boolean;
 }
 
@@ -150,7 +149,6 @@ export function MultipleContainers({
   strategy = verticalListSortingStrategy,
   trashable = false,
   vertical = false,
-  scrollable,
 }: Props) {
   const [items, setItems] = useState<Items>(
     () =>
@@ -451,7 +449,6 @@ export function MultipleContainers({
               id={containerId}
               label={minimal ? undefined : `Column ${containerId}`}
               items={items[containerId]}
-              scrollable={scrollable}
               unstyled={minimal}
               onRemove={() => handleRemove(containerId)}
             >
