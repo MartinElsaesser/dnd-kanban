@@ -126,7 +126,6 @@ interface Props {
   wrapperStyle?(args: {index: number}): React.CSSProperties;
   items: Items;
   renderItem?: any;
-  strategy?: SortingStrategy;
   minimal?: boolean;
   trashable?: boolean;
 }
@@ -142,7 +141,6 @@ export function MultipleContainers({
   wrapperStyle = () => ({}),
   minimal = false,
   renderItem,
-  strategy = verticalListSortingStrategy,
   trashable = false,
 }: Props) {
   const [items, setItems] = useState<Items>(initialItems);
@@ -435,7 +433,7 @@ export function MultipleContainers({
               unstyled={minimal}
               onRemove={() => handleRemove(containerId)}
             >
-              <SortableContext items={items[containerId]} strategy={strategy}>
+              <SortableContext items={items[containerId]} strategy={verticalListSortingStrategy}>
                 {items[containerId].map((value, index) => {
                   return (
                     <SortableItem
