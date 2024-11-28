@@ -37,10 +37,6 @@ import {Item, Container, ContainerProps} from '../../components';
 
 import { useMountStatus } from '../../hooks/useMountStatus';
 
-export default {
-  title: 'Presets/Sortable/Multiple Containers',
-};
-
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
   defaultAnimateLayoutChanges({...args, wasDragging: true});
 
