@@ -35,7 +35,6 @@ import {coordinateGetter as multipleContainersCoordinateGetter} from './multiple
 
 import {Item, Container, ContainerProps} from '../../components';
 
-import {createRange} from '../../utilities';
 import { useMountStatus } from '../../hooks/useMountStatus';
 
 export default {
@@ -125,8 +124,7 @@ interface Props {
     isDragOverlay: boolean;
   }): React.CSSProperties;
   wrapperStyle?(args: {index: number}): React.CSSProperties;
-  itemCount?: number;
-  items?: Items;
+  items: Items;
   renderItem?: any;
   strategy?: SortingStrategy;
   minimal?: boolean;
@@ -139,7 +137,6 @@ const PLACEHOLDER_ID = 'placeholder';
 const empty: UniqueIdentifier[] = [];
 
 export function MultipleContainers({
-  itemCount = 3,
   items: initialItems,
   coordinateGetter = multipleContainersCoordinateGetter,
   getItemStyles = () => ({}),
@@ -150,15 +147,7 @@ export function MultipleContainers({
   trashable = false,
   vertical = false,
 }: Props) {
-  const [items, setItems] = useState<Items>(
-    () =>
-      initialItems ?? {
-        A: createRange(itemCount, (index) => `A${index + 1}`),
-        B: createRange(itemCount, (index) => `B${index + 1}`),
-        C: createRange(itemCount, (index) => `C${index + 1}`),
-        D: createRange(itemCount, (index) => `D${index + 1}`),
-      }
-  );
+  const [items, setItems] = useState<Items>(initialItems);
   const [containers, setContainers] = useState(
     Object.keys(items) as UniqueIdentifier[]
   );
