@@ -118,7 +118,6 @@ const dropAnimation: DropAnimation = {
 type Items = Record<UniqueIdentifier, UniqueIdentifier[]>;
 
 interface Props {
-  adjustScale?: boolean;
   cancelDrop?: CancelDrop;
   columns?: number;
   containerStyle?: React.CSSProperties;
@@ -150,7 +149,6 @@ const PLACEHOLDER_ID = 'placeholder';
 const empty: UniqueIdentifier[] = [];
 
 export function MultipleContainers({
-  adjustScale = false,
   itemCount = 3,
   cancelDrop,
   columns,
@@ -509,7 +507,7 @@ export function MultipleContainers({
         </SortableContext>
       </div>
       {createPortal(
-        <DragOverlay adjustScale={adjustScale} dropAnimation={dropAnimation}>
+        <DragOverlay dropAnimation={dropAnimation}>
           {activeId
             ? containers.includes(activeId)
               ? renderContainerDragOverlay(activeId)
