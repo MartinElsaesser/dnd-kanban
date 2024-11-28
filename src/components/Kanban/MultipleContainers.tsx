@@ -118,7 +118,6 @@ type Items = Record<UniqueIdentifier, UniqueIdentifier[]>;
 
 interface Props {
   columns?: number;
-  containerStyle?: React.CSSProperties;
   coordinateGetter?: KeyboardCoordinateGetter;
   getItemStyles?(args: {
     value: UniqueIdentifier;
@@ -151,7 +150,6 @@ export function MultipleContainers({
   columns,
   handle = false,
   items: initialItems,
-  containerStyle,
   coordinateGetter = multipleContainersCoordinateGetter,
   getItemStyles = () => ({}),
   wrapperStyle = () => ({}),
@@ -465,7 +463,6 @@ export function MultipleContainers({
               columns={columns}
               items={items[containerId]}
               scrollable={scrollable}
-              style={containerStyle}
               unstyled={minimal}
               onRemove={() => handleRemove(containerId)}
             >
