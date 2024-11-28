@@ -47,7 +47,6 @@ const animateLayoutChanges: AnimateLayoutChanges = (args) =>
 
 function DroppableContainer({
   children,
-  columns = 1,
   disabled,
   id,
   items,
@@ -95,7 +94,6 @@ function DroppableContainer({
         ...attributes,
         ...listeners,
       }}
-      columns={columns}
       {...props}
     >
       {children}
@@ -116,7 +114,6 @@ const dropAnimation: DropAnimation = {
 type Items = Record<UniqueIdentifier, UniqueIdentifier[]>;
 
 interface Props {
-  columns?: number;
   coordinateGetter?: KeyboardCoordinateGetter;
   getItemStyles?(args: {
     value: UniqueIdentifier;
@@ -144,7 +141,6 @@ const empty: UniqueIdentifier[] = [];
 
 export function MultipleContainers({
   itemCount = 3,
-  columns,
   items: initialItems,
   coordinateGetter = multipleContainersCoordinateGetter,
   getItemStyles = () => ({}),
@@ -454,7 +450,6 @@ export function MultipleContainers({
               key={containerId}
               id={containerId}
               label={minimal ? undefined : `Column ${containerId}`}
-              columns={columns}
               items={items[containerId]}
               scrollable={scrollable}
               unstyled={minimal}
@@ -533,7 +528,6 @@ export function MultipleContainers({
     return (
       <Container
         label={`Column ${containerId}`}
-        columns={columns}
         style={{
           height: '100%',
         }}
