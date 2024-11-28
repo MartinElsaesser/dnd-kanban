@@ -38,6 +38,7 @@ import {coordinateGetter as multipleContainersCoordinateGetter} from './multiple
 import {Item, Container, ContainerProps} from '../../components';
 
 import {createRange} from '../../utilities';
+import { useMountStatus } from '../../hooks/useMountStatus';
 
 export default {
   title: 'Presets/Sortable/Multiple Containers',
@@ -715,14 +716,4 @@ function SortableItem({
   );
 }
 
-function useMountStatus() {
-  const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 500);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  return isMounted;
-}
