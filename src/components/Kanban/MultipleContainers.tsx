@@ -60,7 +60,6 @@ interface Props {
   }): React.CSSProperties;
   wrapperStyle?(args: {index: number}): React.CSSProperties;
   items: Items;
-  minimal?: boolean;
   trashable?: boolean;
 }
 
@@ -73,7 +72,6 @@ export function MultipleContainers({
   coordinateGetter = multipleContainersCoordinateGetter,
   getItemStyles = () => ({}),
   wrapperStyle = () => ({}),
-  minimal = false,
   trashable = false,
 }: Props) {
   const [items, setItems] = useState<Items>(initialItems);
@@ -361,9 +359,8 @@ export function MultipleContainers({
             <DroppableContainer
               key={containerId}
               id={containerId}
-              label={minimal ? undefined : `Column ${containerId}`}
+              label={`Column ${containerId}`}
               items={items[containerId]}
-              unstyled={minimal}
               onRemove={() => handleRemove(containerId)}
             >
               <SortableContext items={items[containerId]} strategy={verticalListSortingStrategy}>
@@ -384,7 +381,7 @@ export function MultipleContainers({
               </SortableContext>
             </DroppableContainer>
           ))}
-          {minimal ? undefined : (
+           (
             <DroppableContainer
               id={PLACEHOLDER_ID}
               disabled={isSortingContainer}
@@ -394,7 +391,7 @@ export function MultipleContainers({
             >
               + Add column
             </DroppableContainer>
-          )}
+          )
         </SortableContext>
       </div>
       {createPortal(
