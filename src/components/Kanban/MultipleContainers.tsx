@@ -60,7 +60,6 @@ interface Props {
   }): React.CSSProperties;
   wrapperStyle?(args: {index: number}): React.CSSProperties;
   items: Items;
-  renderItem?: () => React.ReactElement;
   minimal?: boolean;
   trashable?: boolean;
 }
@@ -75,7 +74,6 @@ export function MultipleContainers({
   getItemStyles = () => ({}),
   wrapperStyle = () => ({}),
   minimal = false,
-  renderItem,
   trashable = false,
 }: Props) {
   const [items, setItems] = useState<Items>(initialItems);
@@ -378,7 +376,6 @@ export function MultipleContainers({
                       index={index}
                       style={getItemStyles}
                       wrapperStyle={wrapperStyle}
-                      renderItem={renderItem}
                       containerId={containerId}
                       getIndex={getIndex}
                     />
@@ -431,7 +428,6 @@ export function MultipleContainers({
         })}
         color={getColor(id)}
         wrapperStyle={wrapperStyle({index: 0})}
-        renderItem={renderItem}
         dragOverlay
       />
     );
@@ -462,7 +458,6 @@ export function MultipleContainers({
             })}
             color={getColor(item)}
             wrapperStyle={wrapperStyle({index})}
-            renderItem={renderItem}
           />
         ))}
       </Container>

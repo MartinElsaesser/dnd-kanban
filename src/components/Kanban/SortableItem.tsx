@@ -11,7 +11,6 @@ interface SortableItemProps {
   disabled?: boolean;
   style(args: unknown): React.CSSProperties;
   getIndex(id: UniqueIdentifier): number;
-  renderItem?: () => React.ReactElement;
   wrapperStyle({index}: {index: number}): React.CSSProperties;
 }
 
@@ -19,7 +18,6 @@ export function SortableItem({
   disabled,
   id,
   index,
-  renderItem,
   style,
   containerId,
   getIndex,
@@ -61,7 +59,6 @@ export function SortableItem({
       transform={transform}
       fadeIn={mountedWhileDragging}
       listeners={listeners}
-      renderItem={renderItem}
     />
   );
 }
