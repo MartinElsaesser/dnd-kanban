@@ -1,13 +1,10 @@
 import { Kanban } from './components';
-import { createRange } from './utilities';
 
 export default function App() {
-	const itemCount = 3;
 	const items = {
-		A: createRange(itemCount, (index) => `A${index + 1}`),
-		B: createRange(itemCount, (index) => `B${index + 1}`),
-		C: createRange(itemCount, (index) => `C${index + 1}`),
-		D: createRange(itemCount, (index) => `D${index + 1}`),
+		A: ["A1", "A2", "A3", "A4", "A5"],
+		B: ["B1", "B2", "B3", "B4"],
+		C: ["C1", "C2", "C3", "C4"],
 	}
 	return <Kanban items={items} />
 }
